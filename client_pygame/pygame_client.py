@@ -1,6 +1,7 @@
 #
 # You should not make changes to this file
 #
+import os
 import pygame
 import sys
 from config import *
@@ -23,6 +24,10 @@ class PygameClient(PygameSocketGame):
         self.name = name
         self.display = Display(width, height)
         self.control = Control(width, height)
+
+        # music_path = os.path.join('display', 'music', 'LukHash_-_ARCADE_JOURNEYS.wav')
+        # pygame.mixer.music(music_path).play(-1)
+        
         return
     
     def game_logic(self, keys, newkeys, buttons, newbuttons, mouse_position):

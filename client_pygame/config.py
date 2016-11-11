@@ -7,15 +7,15 @@ from engine_server.config import *
 # values, unless you are sure you know what you are doing.
 
 # Configure this to put a title in the top of your window
-DEFAULT_GAME_TITLE = "We didn't set our game title yet"
+DEFAULT_GAME_TITLE = "Duckish Saves the Day"
 # Configure this to use your name during games with others
-DEFAULT_TEAM_NAME  = "We didn't set our team name yet"
+DEFAULT_TEAM_NAME  = "Ducks are Mean"
 
 # This is the number of times to check for input and redraw
 # the screen every second.  If your computer is slow, then
 # you may want to make this smaller.  If you have a fast
 # computer, you can try to make this larger.
-FRAMES_PER_SECOND = 30
+FRAMES_PER_SECOND = 150
 
 # This is how long to wait after the game is over
 # before returning to the pre-game display.

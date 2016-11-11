@@ -130,16 +130,29 @@ class Control(BaseControl):
             engine.set_player_speed_stop()
         elif pygame.K_2 in newkeys:
             engine.set_player_speed_slow()
+        elif pygame.K_3 in newkeys:
+            engine.set_player_speed_medium()
+        elif pygame.K_4 in newkeys:
+            engine.set_player_speed_fast()    
             
         if pygame.K_q in newkeys:
             engine.set_missile_range_none()
-        elif pygame.K_w in newkeys:
+        elif pygame.K_o in newkeys:
             engine.set_missile_range_short()
+        elif pygame.K_e in newkeys:
+            engine.set_missile_range_medium()
+        elif pygame.K_r in newkeys:
+            engine.set_missile_range_long()
 
-        if pygame.K_a in newkeys:
+        if pygame.K_n in newkeys:
             engine.set_missile_power_none()
-        elif pygame.K_s in newkeys:
+        elif pygame.K_l in newkeys:
             engine.set_missile_power_low()
+        elif pygame.K_m in newkeys:
+            engine.set_missile_power_medium()
+        elif pygame.K_h in newkeys:
+            engine.set_missile_range_high()
+
                 
         if pygame.K_SPACE in newkeys:
             engine.fire_missile()

@@ -4,9 +4,11 @@
 #
 
 import pygame
+import os
 from config import *
 from common.event import *
 from client.base_display import BaseDisplay
+
 
 class Display(BaseDisplay):
     """
@@ -104,6 +106,12 @@ class Display(BaseDisplay):
         self.wall_color       = (255, 255, 255)
         self.text_color       = (255, 255, 255)
         self.background_color = (0, 0, 0)
+       
+        music_path = os.path.join('display', 'music', 'LukHash_-_ARCADE_JOURNEYS.wav')
+        pygame.mixer.init()
+        pygame.mixer.music.load(music_path)
+        pygame.mixer.music.play(-1)
+
         return
 
     def paint_pregame(self, surface, control):

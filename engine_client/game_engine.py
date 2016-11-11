@@ -45,8 +45,8 @@ from common.event_message import message_to_event
 from common.command_message import *
 from common.game_message import *
 
-MODE_DUAL = 1
-MODE_SINGLE = 2
+MODE_SINGLE = 1
+MODE_DUAL = 2
 MODE_AI = 3
 MODE_TOURNAMENT = 4
 MODE_VIEW = 5
