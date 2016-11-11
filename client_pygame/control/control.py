@@ -156,6 +156,11 @@ class Control(BaseControl):
                 
         if pygame.K_SPACE in newkeys:
             engine.fire_missile()
+            engine.fire_missile()
+            engine.fire_missile()
+            engine.fire_missile()
+            engine.fire_missile()
+            engine.fire_missile()
 
         if pygame.K_i in newkeys:
             self.show_info = not self.show_info

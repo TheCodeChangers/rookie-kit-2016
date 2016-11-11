@@ -100,12 +100,12 @@ class Display(BaseDisplay):
         # colors and find their RGB values.   Be sure to use the `R`, `G`,
         # `B` values at the bottom, not the H, S, B values at the top.
         self.player_color     = (0, 255, 0)
-        self.opponent_color   = (255, 0, 0)
+        #self.opponent_color   = (255, 0, 0)
         self.missile_color    = (0, 255, 255)
         self.npc_color        = (255, 255, 0)
         self.wall_color       = (255, 255, 255)
         self.text_color       = (255, 255, 255)
-        self.background_color = (0, 0, 0)
+        self.background_color = (50, 0, 200)
        
         music_path = os.path.join('display', 'music', 'LukHash_-_ARCADE_JOURNEYS.wav')
         pygame.mixer.init()
@@ -121,6 +121,7 @@ class Display(BaseDisplay):
         # background
         rect = pygame.Rect(0, 0, self.width, self.height)
         surface.fill(self.background_color, rect)
+        
         # text message in center of screen
         s = "Press 'd' for dual player, 's' for single player,"
         self.draw_text_center(surface, s, self.text_color,
@@ -174,6 +175,7 @@ class Display(BaseDisplay):
         # draw game data
         if control.show_info:
             self.paint_game_status(surface, engine, control)
+
         return
 
 
@@ -213,9 +215,12 @@ class Display(BaseDisplay):
         Draws living NPCs.
         """
         if obj.is_alive():
-            color = self.npc_color
+            file_path = os.path.join('display', 'images', 'badguy.gif')
+            image = pygame.image.load(file_path)
+            image = image.convert_alpha() # might not be nessesary depending on OS
+
             rect = self.obj_to_rect(obj)
-            pygame.draw.rect(surface, color, rect)
+            surface.blit(image, rect)
         return
 
     def paint_missile(self, surface, engine, control, obj):
@@ -236,10 +241,22 @@ class Display(BaseDisplay):
         if obj.is_alive():
             rect = self.obj_to_rect(obj)
             if obj.get_oid() == engine.get_player_oid():
-                color = self.player_color
+ 
+  
+                file_path = os.path.join('display', 'images', 'duck.png')
+                image = pygame.image.load(file_path)
+                image = image.convert_alpha()
+
+                surface.blit(image, rect)
+
             else:
-                color = self.opponent_color
-            pygame.draw.rect(surface, color, rect)
+                file_path = os.path.join('display', 'images', 'panzer.gif')
+                image = pygame.image.load(file_path)
+                image = image.convert_alpha() # might not be nessesary depending on OS
+
+                rect = self.obj_to_rect(obj)
+                surface.blit(image, rect)
+            
         return
 
     def paint_game_status(self, surface, engine, control):
