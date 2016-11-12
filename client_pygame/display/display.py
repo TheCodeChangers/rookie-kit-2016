@@ -105,7 +105,7 @@ class Display(BaseDisplay):
         self.npc_color        = (255, 255, 0)
         self.wall_color       = (255, 255, 255)
         self.text_color       = (255, 255, 255)
-        self.background_color = (50, 0, 200)
+        self.background_color = (50, 0, 120)
        
         music_path = os.path.join('display', 'music', 'LukHash_-_ARCADE_JOURNEYS.wav')
         pygame.mixer.init()
