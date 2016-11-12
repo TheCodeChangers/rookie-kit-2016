@@ -215,12 +215,78 @@ class Display(BaseDisplay):
         Draws living NPCs.
         """
         if obj.is_alive():
+            rect = self.obj_to_rect(obj)
+            
             file_path = os.path.join('display', 'images', 'badguy.gif')
             image = pygame.image.load(file_path)
-            image = image.convert_alpha() # might not be nessesary depending on OS
-
-            rect = self.obj_to_rect(obj)
             surface.blit(image, rect)
+
+            pct = (obj.get_health() / obj.get_max_health()) * 10
+            pct = int(round(pct))
+            health = ''
+            health = health.ljust(pct, chr(156))
+            health = health.ljust(10)
+            health = '|' + health + '|'
+        else:
+            oid = engine.get_player_oid()
+            if oid > 0: 
+                me = engine.get_object(oid)
+                if me:
+                    if me.get_experience() >= (15 * HEALTH_NPC):
+                        health = 'MAX POWER!!!! :P'
+                    # XP_LEVEL_MISSILE_MANA_RECHARGE_FAST = 14
+                    elif me.get_experience() >= (14 * HEALTH_NPC):
+                        health = 'Fast Missle Recharge UNLOCKED!!'
+                    # XP_LEVEL_MOVE_MANA_RECHARGE_FAST = 13
+                    elif me.get_experience() >= (13 * HEALTH_NPC):
+                        health = 'Fast Mana Recharge UNLOCKED!!'
+                    # XP_LEVEL_POWER_HIGH   = 12
+                    elif me.get_experience() >= (12 * HEALTH_NPC):
+                        health = 'High Missile Power UNLOCKED!!'
+                        engine.set_missile_power_high()
+                    # XP_LEVEL_MOVE_MANA_HIGH = 11
+                    elif me.get_experience() >= (11 * HEALTH_NPC):
+                        health = 'High Move Mana UNLOCKED!!'
+                    # XP_LEVEL_RANGE_LONG   = 10
+                    elif me.get_experience() >= (10 * HEALTH_NPC):
+                        health = 'Long Range UNLOCKED!!'
+                        engine.set_missile_range_long()
+                    # XP_LEVEL_MISSILE_MANA_HIGH = 9
+                    elif me.get_experience() >= (9 * HEALTH_NPC):
+                        health = 'High Missile Mana UNLOCKED!!'
+                    # XP_LEVEL_SPEED_FAST   = 8
+                    elif me.get_experience() >= (8 * HEALTH_NPC):
+                        health = 'Fast Speed UNLOCKED!!'
+                        engine.set_player_speed_fast()
+                        self.go_speed = 'fast'
+                    # XP_LEVEL_MISSILE_MANA_RECHARGE_MEDIUM = 7
+                    elif me.get_experience() >= (7 * HEALTH_NPC):
+                        health = 'Medium Missile Recharge Mana UNLOCKED!!'
+                    # XP_LEVEL_MOVE_MANA_RECHARGE_MEDIUM = 6
+                    elif me.get_experience() >= (6 * HEALTH_NPC):
+                        health = 'Medium Recharge Mana UNLOCKED!!'
+                    # XP_LEVEL_POWER_MEDIUM = 5
+                    elif me.get_experience() >= (5 * HEALTH_NPC):
+                        health = 'Medium Missile Power UNLOCKED!!'
+                        engine.set_missile_power_medium()
+                    # XP_LEVEL_MOVE_MANA_MEDIUM = 4
+                    elif me.get_experience() >= (4 * HEALTH_NPC):
+                        health = 'Medium Move Mana UNLOCKED!!'
+                    # XP_LEVEL_RANGE_MEDIUM = 3
+                    elif me.get_experience() >= (3 * HEALTH_NPC):
+                        health = 'Medium Range UNLOCKED!!'
+                        engine.set_missile_range_medium()
+                    # XP_LEVEL_MISSILE_MANA_MEDIUM = 2
+                    elif me.get_experience() >= (2 * HEALTH_NPC):
+                        health = 'Medium Missile Mana UNLOCKED!!'                        
+                    # XP_LEVEL_SPEED_MEDIUM = 1
+                    else:
+                        health = 'Medium Speed UNLOCKED!!'
+                        engine.set_player_speed_medium()
+                        self.go_speed = 'medium'
+        self.draw_text_center(surface, health, (200, 0, 0),
+                              obj.get_x() + 2, obj.get_y() + 3.5,
+                              self.font)
         return
 
     def paint_missile(self, surface, engine, control, obj):
@@ -228,9 +294,12 @@ class Display(BaseDisplay):
         Draws living missiles.
         """
         if obj.is_alive():
-            color = self.missile_color
+            obj.set_w(1.8)
+            obj.set_h(1.8)
             rect = self.obj_to_rect(obj)
-            pygame.draw.rect(surface, color, rect)
+            file_path = os.path.join('display', 'images', 'missle.png')
+            image = pygame.image.load(file_path)
+            surface.blit(image, rect)
         return
 
     def paint_player(self, surface, engine, control, obj):
@@ -238,6 +307,22 @@ class Display(BaseDisplay):
         Draws living players.
         My player is my opponent are in different colors
         """
+        missile_count = int(math.floor(obj.get_missile_mana()))
+        missiles = ''
+        missiles = missiles.ljust(missile_count, '>')
+        self.draw_text_center(surface, missiles, (0, 0, 200),
+                              obj.get_x() + 40, obj.get_y(),
+                              self.font)
+
+        pct = (obj.get_health() / obj.get_max_health()) * 10
+        pct = int(round(pct))
+        health = ''
+        health = health.ljust(pct, chr(156))
+        health = health.ljust(10)
+        health = '|' + health + '|'
+        self.draw_text_center(surface, health, (200, 0, 0),
+                              obj.get_x() + 40, obj.get_y() - self.font_size,
+                              self.font)
         if obj.is_alive():
             rect = self.obj_to_rect(obj)
             if obj.get_oid() == engine.get_player_oid():
@@ -249,14 +334,24 @@ class Display(BaseDisplay):
 
                 surface.blit(image, rect)
 
+
+
             else:
+
                 file_path = os.path.join('display', 'images', 'panzer.gif')
                 image = pygame.image.load(file_path)
                 image = image.convert_alpha() # might not be nessesary depending on OS
 
                 rect = self.obj_to_rect(obj)
                 surface.blit(image, rect)
-            
+
+            (x, y) = obj.get_center()
+            x = int( round(x) )
+            y = int (round(y) )
+
+            missle_range = int( round(obj.get_missile_range() ))
+            pygame.draw.circle(surface, (255, 255, 255), (x,y), missle_range, 1)
+
         return
 
     def paint_game_status(self, surface, engine, control):
