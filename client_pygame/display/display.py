@@ -220,7 +220,7 @@ class Display(BaseDisplay):
         """
         self.paint_game(surface, engine, control)
 
-        s = "Game Over (panzer wins!)"
+        s = "Game Over (Panzer Wins!)"
         self.draw_text_center(surface, s, self.text_color, int(self.width/2), int(self.height/2), self.font)
         return
 
