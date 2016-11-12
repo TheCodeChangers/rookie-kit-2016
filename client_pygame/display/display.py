@@ -143,7 +143,7 @@ class Display(BaseDisplay):
         rect = pygame.Rect(0, 0, self.width, self.height)
         surface.fill(self.background_color, rect)
         # text message in center of screen
-        s = "Waiting for opponent to connect."
+        s = "Loading Game..."
         self.draw_text_center(surface, s, self.text_color,
                               self.width/2, self.height/2,
                               self.font)
@@ -156,6 +156,9 @@ class Display(BaseDisplay):
         # background
         rect = pygame.Rect(0, 0, self.width, self.height)
         surface.fill(self.background_color, rect)
+
+        if hasattr(control, 'background_color') and control.background_color != self.background_color:
+            self.background_color = control.background_color
 
         # draw each object
         objs = engine.get_objects()
@@ -187,7 +190,7 @@ class Display(BaseDisplay):
         """
         self.paint_game(surface, engine, control)
 
-        s = "Game Over (%s wins!)" % (engine.get_winner_name())
+        s = "Game Over (panzer wins!)" % (engine.get_winner_name())
         self.draw_text_center(surface, s, self.text_color, int(self.width/2), int(self.height/2), self.font)
         return
 
@@ -207,7 +210,10 @@ class Display(BaseDisplay):
         Draws walls.
         """
         rect = self.obj_to_rect(obj)
-        pygame.draw.rect(surface, self.wall_color, rect)
+        file_path = os.path.join('display', 'images', 'dat wall.png')
+        image = pygame.image.load(file_path)
+        surface.blit(image, rect)
+  
         return
 
     def paint_npc(self, surface, engine, control, obj):

@@ -2,7 +2,7 @@
 # This file is where you will control your player.
 # Make changes and add functions as you need.
 #
-
+from random import randint
 import pygame
 from client.base_control import *
 
@@ -110,6 +110,10 @@ class Control(BaseControl):
         to make changes to the game engine based on the
         user input.
         """
+        if False == hasattr(self, 'current_key'):
+            self.current_key = pygame.K_1
+        if False == hasattr(self, 'seisure_mode'):
+            self.seisure_mode = False
         
         (mouse_x, mouse_y) = mouse_position
         
@@ -164,6 +168,14 @@ class Control(BaseControl):
 
         if pygame.K_i in newkeys:
             self.show_info = not self.show_info
+
+        if pygame.K_c in newkeys or self.seisure_mode:
+            self.background_color = (randint(0,255), randint(0,255), randint(0,255))
+        if pygame.K_z in newkeys:
+            self.seisure_mode = not self.seisure_mode
+            
+        if self.current_key not in keys and self.current_key != pygame.K_1:
+            engine.set_player_speed_stop()
 
         return
         
