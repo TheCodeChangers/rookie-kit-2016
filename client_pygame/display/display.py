@@ -220,7 +220,7 @@ class Display(BaseDisplay):
         """
         self.paint_game(surface, engine, control)
 
-        s = "Game Over (panzer wins!)"
+        s = "Game Over (Panzer Wins!)"
         self.draw_text_center(surface, s, self.text_color, int(self.width/2), int(self.height/2), self.font)
         return
 
@@ -372,16 +372,16 @@ class Display(BaseDisplay):
                 file_path = os.path.join('display', 'images', 'duck.png')
                 image = pygame.image.load(file_path)
                 image = image.convert_alpha()
+                image = pygame.transform.scale(image, (obj.get_pw(), obj.get_ph()))
 
                 surface.blit(image, rect)
-
-
 
             else:
 
                 file_path = os.path.join('display', 'images', 'panzer.gif')
                 image = pygame.image.load(file_path)
                 image = image.convert_alpha() # might not be nessesary depending on OS
+                image = pygame.transform.scale(image, (obj.get_pw(), obj.get_ph()))
 
                 rect = self.obj_to_rect(obj)
                 surface.blit(image, rect)
