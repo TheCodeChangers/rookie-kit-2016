@@ -125,11 +125,41 @@ class Display(BaseDisplay):
         # text message in center of screen
         s = "Press 'd' for dual player, 's' for single player,"
         self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2,
+                              self.width/2, 450,
                               self.font)
         s = "'t' for tournament, 'esc' to quit."
         self.draw_text_center(surface, s, self.text_color,
-                              self.width/2, self.height/2 + 3*self.font_size/2,
+                              self.width/2, 500,
+                              self.font)
+        s = "To Start-"
+        self.draw_text_center(surface, s, self.text_color,
+                              self.width/2, 400,
+                              self.font)
+
+        s = "Controls-"
+        self.draw_text_center(surface, s, self.text_color,
+                              self.width/2, 150,
+                              self.font)
+        s = "Press UP arrow to set player direction and missile_direction upward"
+        self.draw_text_center(surface, s, self.text_color,
+                              self.width/2, 200,
+                              self.font)
+        s = "Press DOWN arrow to set player direction and missile direction downward"
+        self.draw_text_center(surface, s, self.text_color,
+                              self.width/2, 250,
+                              self.font)
+        s = "Press RIGHT arrow to set player direction and missile direction right"
+        self.draw_text_center(surface, s, self.text_color,
+                              self.width/2, 300,
+                              self.font)
+        s = "Press LEFT arrow to set player direction and missile direction left"
+        self.draw_text_center(surface, s, self.text_color,
+                              self.width/2, 350,
+                              self.font)
+       
+        s = "Press Z to start and stop SEIZURE MODE"
+        self.draw_text_center(surface, s, self.text_color,
+                              self.width/2, 550,
                               self.font)
         return
 
