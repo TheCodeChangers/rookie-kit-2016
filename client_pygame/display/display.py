@@ -166,7 +166,7 @@ class Display(BaseDisplay):
                               self.width/2, 350,
                               self.font)
        
-        s = "Press W (or red frog) to swtart and stop SEIZURE MODE"
+        s = "Press W (or red frog) to start and stop SEIZURE MODE"
         self.draw_text_center(surface, s, self.text_color,
                               self.width/2, 550,
                               self.font)
