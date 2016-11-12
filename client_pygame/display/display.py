@@ -166,7 +166,7 @@ class Display(BaseDisplay):
                               self.width/2, 350,
                               self.font)
        
-        s = "Press Z to start and stop SEIZURE MODE"
+        s = "Press W (or red frog) to swtart and stop SEIZURE MODE"
         self.draw_text_center(surface, s, self.text_color,
                               self.width/2, 550,
                               self.font)
@@ -229,7 +229,7 @@ class Display(BaseDisplay):
         """
         self.paint_game(surface, engine, control)
 
-        s = "Game Over (Panzer Wins!)"
+        s = "Gane Over: (%s wins!)" % (engine.get_winner_name())
         self.draw_text_center(surface, s, self.text_color, int(self.width/2), int(self.height/2), self.font)
         return
 
