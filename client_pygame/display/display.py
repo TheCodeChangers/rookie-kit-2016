@@ -367,10 +367,9 @@ class Display(BaseDisplay):
                 file_path = os.path.join('display', 'images', control.player_image)
                 image = pygame.image.load(file_path)
                 image = image.convert_alpha()
+                image = pygame.transform.scale(image, (obj.get_pw(), obj.get_ph()))
 
                 surface.blit(image, rect)
-
-
 
             else:
 

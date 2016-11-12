@@ -131,6 +131,7 @@ class Control(BaseControl):
         if pygame.K_UP in newkeys or pygame.K_w in newkeys:
             engine.set_player_direction(270)
             engine.set_missile_direction(270)
+            self.player_image = 'duck7.png'
 
             if pygame.K_UP in newkeys:
                 self.current_key = pygame.K_UP
@@ -140,6 +141,7 @@ class Control(BaseControl):
         elif pygame.K_DOWN in newkeys or pygame.K_s in newkeys:
             engine.set_player_direction(90)
             engine.set_missile_direction(90)
+            self.player_image = 'duck5.png'
 
             if pygame.K_DOWN in newkeys:
                 self.current_key = pygame.K_DOWN
@@ -172,13 +174,20 @@ class Control(BaseControl):
 
 
                 
-        if pygame.K_SPACE in newkeys:
+        if pygame.K_SPACE in newkeys and self.player_image == 'duck.png':
             engine.fire_missile()
+            self.player_image = 'duck3.png'
+        elif pygame.K_SPACE in newkeys and self.player_image == 'duck2.png':
             engine.fire_missile()
+            self.player_image = 'duck4.png'
+        elif pygame.K_SPACE in newkeys and self.player_image == 'duck5.png':
             engine.fire_missile()
+            self.player_image = 'duck6.png'
+        elif pygame.K_SPACE in newkeys and self.player_image == 'duck7.png':
             engine.fire_missile()
-            engine.fire_missile()
-            engine.fire_missile()
+
+
+
 
         if pygame.K_i in newkeys:
             self.show_info = not self.show_info
