@@ -364,7 +364,7 @@ class Display(BaseDisplay):
             if obj.get_oid() == engine.get_player_oid():
  
   
-                file_path = os.path.join('display', 'images', 'duck.png')
+                file_path = os.path.join('display', 'images', control.player_image)
                 image = pygame.image.load(file_path)
                 image = image.convert_alpha()
 

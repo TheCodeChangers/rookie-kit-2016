@@ -24,6 +24,7 @@ class PygameClient(PygameSocketGame):
         self.name = name
         self.display = Display(width, height)
         self.control = Control(width, height)
+        self.control.player_image = "duck2.png"
 
         # music_path = os.path.join('display', 'music', 'LukHash_-_ARCADE_JOURNEYS.wav')
         # pygame.mixer.music(music_path).play(-1)
