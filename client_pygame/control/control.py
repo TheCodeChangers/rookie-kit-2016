@@ -149,6 +149,7 @@ class Control(BaseControl):
         elif pygame.K_LEFT in newkeys or pygame.K_a in newkeys:
             engine.set_player_direction(180)
             engine.set_missile_direction(180)
+            self.player_image = 'duck2.png'
 
             if pygame.K_LEFT in newkeys:
                 self.current_key = pygame.K_LEFT
@@ -158,6 +159,7 @@ class Control(BaseControl):
         elif pygame.K_RIGHT in newkeys or pygame.K_d in newkeys:
             engine.set_player_direction(0)
             engine.set_missile_direction(0)
+            self.player_image = 'duck.png'
 
             if pygame.K_RIGHT in newkeys:
                 self.current_key = pygame.K_RIGHT

@@ -190,7 +190,7 @@ class Display(BaseDisplay):
         """
         self.paint_game(surface, engine, control)
 
-        s = "Game Over (panzer wins!)" % (engine.get_winner_name())
+        s = "Game Over (panzer wins!)"
         self.draw_text_center(surface, s, self.text_color, int(self.width/2), int(self.height/2), self.font)
         return
 
