@@ -106,6 +106,11 @@ class Display(BaseDisplay):
         self.wall_color       = (255, 255, 255)
         self.text_color       = (255, 255, 255)
         self.background_color = (50, 0, 120)
+        self.hbar_outer_color = (255,0,0)
+        self.hbar_inner_color = (0,255,0)
+        self.mibar_color = (0,0,255)
+
+
        
         music_path = os.path.join('display', 'music', 'LukHash_-_ARCADE_JOURNEYS.wav')
         pygame.mixer.init()
@@ -343,22 +348,8 @@ class Display(BaseDisplay):
         Draws living players.
         My player is my opponent are in different colors
         """
-        missile_count = int(math.floor(obj.get_missile_mana()))
-        missiles = ''
-        missiles = missiles.ljust(missile_count, '>')
-        self.draw_text_center(surface, missiles, (0, 0, 200),
-                              obj.get_x() + 40, obj.get_y(),
-                              self.font)
+        health = obj.get_health()/ obj.get_max_health()
 
-        pct = (obj.get_health() / obj.get_max_health()) * 10
-        pct = int(round(pct))
-        health = ''
-        health = health.ljust(pct, chr(156))
-        health = health.ljust(10)
-        health = '|' + health + '|'
-        self.draw_text_center(surface, health, (200, 0, 0),
-                              obj.get_x() + 40, obj.get_y() - self.font_size,
-                              self.font)
         if obj.is_alive():
             rect = self.obj_to_rect(obj)
             if obj.get_oid() == engine.get_player_oid():
@@ -370,6 +361,18 @@ class Display(BaseDisplay):
                 image = pygame.transform.scale(image, (obj.get_pw(), obj.get_ph()))
 
                 surface.blit(image, rect)
+                player = engine.get_object(obj.get_oid())
+                missile_mana = player.get_missile_mana()/ player.get_missile_mana_max()
+
+
+                hbar_outer = pygame.Rect(10,10,200,40)
+                hbar_inner = pygame.Rect(10,10,200*health,40)
+                pygame.draw.rect(surface, self.hbar_outer_color, hbar_outer)
+                pygame.draw.rect(surface, self.hbar_inner_color, hbar_inner)
+
+
+                mibar_inner = pygame.Rect(5,5,210 * missile_mana, 20)
+                pygame.draw.rect(surface, self.mibar_color, mibar_inner)
 
             else:
 
