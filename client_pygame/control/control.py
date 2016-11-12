@@ -2,6 +2,7 @@
 # This file is where you will control your player.
 # Make changes and add functions as you need.
 #
+import os
 from random import randint
 import pygame
 from client.base_control import *
@@ -177,14 +178,22 @@ class Control(BaseControl):
         if pygame.K_SPACE in newkeys and self.player_image == 'duck.png':
             engine.fire_missile()
             self.player_image = 'duck3.png'
+            sound = pygame.mixer.Sound(os.path.join ("display", "music", "bang.wav"))
+            sound.play()
         elif pygame.K_SPACE in newkeys and self.player_image == 'duck2.png':
             engine.fire_missile()
             self.player_image = 'duck4.png'
+            sound = pygame.mixer.Sound(os.path.join ("display", "music", "bang.wav"))
+            sound.play()
         elif pygame.K_SPACE in newkeys and self.player_image == 'duck5.png':
             engine.fire_missile()
+            sound = pygame.mixer.Sound(os.path.join ("display", "music", "bang.wav"))
+            sound.play()
             self.player_image = 'duck6.png'
         elif pygame.K_SPACE in newkeys and self.player_image == 'duck7.png':
             engine.fire_missile()
+            sound = pygame.mixer.Sound(os.path.join ("display", "music", "bang.wav"))
+            sound.play()
 
 
 

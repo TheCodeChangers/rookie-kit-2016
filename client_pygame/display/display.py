@@ -376,6 +376,7 @@ class Display(BaseDisplay):
                 file_path = os.path.join('display', 'images', 'panzer.gif')
                 image = pygame.image.load(file_path)
                 image = image.convert_alpha() # might not be nessesary depending on OS
+                image = pygame.transform.scale(image, (obj.get_pw(), obj.get_ph()))
 
                 rect = self.obj_to_rect(obj)
                 surface.blit(image, rect)
