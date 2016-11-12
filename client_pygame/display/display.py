@@ -99,7 +99,7 @@ class Display(BaseDisplay):
         # Check out http://www.colorpicker.com/ if you want to try out
         # colors and find their RGB values.   Be sure to use the `R`, `G`,
         # `B` values at the bottom, not the H, S, B values at the top.
-        self.player_color     = (0, 255, 0)
+        self.player_color     = (0, 255, 0) 
         #self.opponent_color   = (255, 0, 0)
         self.missile_color    = (0, 255, 255)
         self.npc_color        = (255, 255, 0)
@@ -362,9 +362,14 @@ class Display(BaseDisplay):
         if obj.is_alive():
             rect = self.obj_to_rect(obj)
             if obj.get_oid() == engine.get_player_oid():
- 
+
+ # This is trumps Wall This is trumps Wall This is trumps Wall This is trumps Wall This is trumps Wall
+                
+
+        
+               
   
-                file_path = os.path.join('display', 'images', control.player_image)
+                file_path = os.path.join('display', 'images', 'duck.png')
                 image = pygame.image.load(file_path)
                 image = image.convert_alpha()
 
