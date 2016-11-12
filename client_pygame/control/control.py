@@ -203,7 +203,7 @@ class Control(BaseControl):
 
         if pygame.K_c in newkeys or self.seisure_mode:
             self.background_color = (randint(0,255), randint(0,255), randint(0,255))
-        if pygame.K_z in newkeys:
+        if pygame.K_w in newkeys:
             self.seisure_mode = not self.seisure_mode
 
         if self.current_key not in keys and self.current_key != pygame.K_1:
