@@ -9,7 +9,7 @@ from engine_server.config import *
 # Configure this to put a title in the top of your window
 DEFAULT_GAME_TITLE = "Duckish Saves the Day"
 # Configure this to use your name during games with others
-DEFAULT_TEAM_NAME  = "Ducks are Mean"
+DEFAULT_TEAM_NAME  = "Duckish"
 
 # This is the number of times to check for input and redraw
 # the screen every second.  If your computer is slow, then
