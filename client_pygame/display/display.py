@@ -143,6 +143,10 @@ class Display(BaseDisplay):
 
         s = "Controls-"
         self.draw_text_center(surface, s, self.text_color,
+                              self.width/2, 100,
+                              self.font)
+        s = "Press SPACE to shoot"
+        self.draw_text_center(surface, s, self.text_color,
                               self.width/2, 150,
                               self.font)
         s = "Press UP arrow to set player direction and missile_direction upward"
